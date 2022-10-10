@@ -1,34 +1,58 @@
 package racingcar.controller;
 
+import racingcar.domain.GameCount;
 import racingcar.domain.RacingGame;
-import racingcar.domain.RandomMovingStrategy;
 import racingcar.util.CarUtil;
 import racingcar.view.GameView;
 
 public class GameController {
 
-    private GameView gameView;
-    public GameController(GameView gameView) {
+    private final GameView gameView;
+    private final RacingGame racingGame;
+
+    private GameCount gameCount;
+
+    public GameController(GameView gameView, RacingGame racingGame) {
         this.gameView = gameView;
+        this.racingGame = racingGame;
     }
 
     public void start() {
-        RacingGame racingGame = new RacingGame(new RandomMovingStrategy());
+        setCars();
+        setGameCount();
+        play();
+        printWinner();
+    }
 
-        gameView.printCarNameScript();
-        String carNamesString = gameView.getInput();
+    private void setCars() {
+        try {
+            gameView.printCarNameScript();
+            String carNamesString = gameView.getInput();
+            racingGame.createCars(CarUtil.createCarsOf(carNamesString));
+        } catch (IllegalArgumentException exception) {
+            gameView.print(exception.getMessage());
+            setCars();
+        }
+    }
 
-        racingGame.createCars(CarUtil.createCarsOf(carNamesString));
-
+    private void setGameCount() {
         gameView.printTryCountScript();
-        int maxTryCount = Integer.parseInt(gameView.getInput());
+        try {
+            this.gameCount = new GameCount(gameView.getInput());
+        } catch (IllegalArgumentException exception) {
+            gameView.print(exception.getMessage());
+            setGameCount();
+        }
+    }
 
-        for(int tryCount = 0; tryCount < maxTryCount; tryCount++) {
+    private void play() {
+        for (int tryCount = 0; tryCount < gameCount.getGameCount(); tryCount++) {
             racingGame.moveCars();
             gameView.print(racingGame.getMoveResult());
         }
+    }
 
-        String winnerString = racingGame.getWinnerText();
-        gameView.print("최종 우승자 : " + winnerString);
+    private void printWinner() {
+        gameView.print("최종 우승자 : " + racingGame.getWinnerText());
     }
 }
