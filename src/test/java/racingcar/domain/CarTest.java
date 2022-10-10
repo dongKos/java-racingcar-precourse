@@ -1,4 +1,4 @@
-package racingcar.model;
+package racingcar.domain;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,10 +26,10 @@ class CarTest {
     @Test
     void 랜덤값이_3이하면_멈추고_4이상이면_전진한다() {
         Car car = new Car(new CarName("dongk"));
-        car.move(new RandomMoveNumber(3));
+        car.move(() -> false);
         assertEquals(car.getCurrentPositon(), 0);
 
-        car.move(new RandomMoveNumber(4));
+        car.move(() -> true);
         assertEquals(car.getCurrentPositon(), 1);
     }
 }

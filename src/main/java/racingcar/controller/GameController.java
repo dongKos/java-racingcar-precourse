@@ -1,6 +1,7 @@
 package racingcar.controller;
 
-import racingcar.model.RacingGame;
+import racingcar.domain.RacingGame;
+import racingcar.domain.RandomMovingStrategy;
 import racingcar.util.CarUtil;
 import racingcar.view.GameView;
 
@@ -12,7 +13,7 @@ public class GameController {
     }
 
     public void start() {
-        RacingGame racingGame = new RacingGame();
+        RacingGame racingGame = new RacingGame(new RandomMovingStrategy());
 
         gameView.printCarNameScript();
         String carNamesString = gameView.getInput();

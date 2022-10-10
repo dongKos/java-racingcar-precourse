@@ -1,4 +1,4 @@
-package racingcar.model;
+package racingcar.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -7,9 +7,9 @@ import java.util.List;
 
 public class RacingGame {
     private List<Car> cars = new ArrayList<>();
-
-    public RacingGame() {
-
+    private final MovingStrategy movingStrategy;
+    public RacingGame(MovingStrategy movingStrategy) {
+        this.movingStrategy = movingStrategy;
     }
 
     public void createCars(List<Car> cars) {
@@ -18,12 +18,8 @@ public class RacingGame {
 
     public void moveCars() {
         for(Car car: cars) {
-            car.move(getRandomMoveNumber());
+            car.move(movingStrategy);
         }
-    }
-
-    protected RandomMoveNumber getRandomMoveNumber() {
-        return new RandomMoveNumber(Randoms.pickNumberInRange(1, 9));
     }
 
     public String getMoveResult() {

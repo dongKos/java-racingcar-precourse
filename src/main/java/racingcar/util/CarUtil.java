@@ -1,7 +1,7 @@
 package racingcar.util;
 
-import racingcar.model.Car;
-import racingcar.model.CarName;
+import racingcar.domain.Car;
+import racingcar.domain.CarName;
 
 import java.util.ArrayList;
 import java.util.List;
