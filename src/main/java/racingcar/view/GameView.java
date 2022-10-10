@@ -19,4 +19,12 @@ public class GameView {
     public void print(String moveResult) {
         System.out.println(moveResult);
     }
+
+    public void printError(String message) {
+        System.out.println("[ERROR] " + message);
+    }
+
+    public void printWinner(String winners) {
+        System.out.println("최종 우승자 : " + winners);
+    }
 }

@@ -1,5 +1,8 @@
 package racingcar.domain;
 
+import static racingcar.exception.ErrorMessage.EMPTY_CARNAME;
+import static racingcar.exception.ErrorMessage.INVALID_CARNAME;
+
 public class CarName {
     private String value;
 
@@ -14,11 +17,11 @@ public class CarName {
 
     private void validateName(String value) {
         if (value.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 이름은 공백일 수 없습니다");
+            throw new IllegalArgumentException(EMPTY_CARNAME);
         }
 
         if (value.length() > 5) {
-            throw new IllegalArgumentException("[ERROR] 자동차의 이름은 1자이상 5자이하이어야합니다.");
+            throw new IllegalArgumentException(INVALID_CARNAME);
         }
     }
 }

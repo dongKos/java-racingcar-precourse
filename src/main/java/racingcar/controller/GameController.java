@@ -30,7 +30,7 @@ public class GameController {
             String carNamesString = gameView.getInput();
             racingGame.createCars(CarUtil.createCarsOf(carNamesString));
         } catch (IllegalArgumentException exception) {
-            gameView.print(exception.getMessage());
+            gameView.printError(exception.getMessage());
             setCars();
         }
     }
@@ -40,7 +40,7 @@ public class GameController {
         try {
             this.gameCount = new GameCount(gameView.getInput());
         } catch (IllegalArgumentException exception) {
-            gameView.print(exception.getMessage());
+            gameView.printError(exception.getMessage());
             setGameCount();
         }
     }
@@ -53,6 +53,6 @@ public class GameController {
     }
 
     private void printWinner() {
-        gameView.print("최종 우승자 : " + racingGame.getWinnerText());
+        gameView.printWinner(racingGame.getWinnerText());
     }
 }

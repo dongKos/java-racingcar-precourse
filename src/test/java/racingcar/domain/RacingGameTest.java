@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RacingGameTest {
 
-
     @Test
     void 입력받은값으로_자동차객체들_생성() {
         RacingGame racingGame = new RacingGame(() -> true);
@@ -25,7 +24,7 @@ class RacingGameTest {
         List<Car> cars = CarUtil.createCarsOf(carNamesString);
         racingGame.createCars(cars);
         racingGame.moveCars();
-        for(Car car : cars) {
+        for (Car car : cars) {
             assertEquals(car.getCurrentPositon(), new Position(1));
         }
     }

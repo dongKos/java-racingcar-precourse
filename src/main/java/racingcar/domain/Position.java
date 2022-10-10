@@ -2,6 +2,8 @@ package racingcar.domain;
 
 import java.util.Objects;
 
+import static racingcar.exception.ErrorMessage.INVALID_POSITION;
+
 public class Position {
     private int position;
 
@@ -11,7 +13,7 @@ public class Position {
 
     public Position(int position) {
         if (position < 0) {
-            throw new IllegalArgumentException("[ERROR] 위치는 음수값을 가질 수 없습니다");
+            throw new IllegalArgumentException(INVALID_POSITION);
         }
         this.position = position;
     }
@@ -43,7 +45,7 @@ public class Position {
 
     public String getCurrentPositionString() {
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < this.position; i++) {
+        for (int i = 0; i < this.position; i++) {
             sb.append("-");
         }
         return sb.toString();
