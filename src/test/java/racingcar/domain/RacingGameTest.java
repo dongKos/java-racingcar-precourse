@@ -26,7 +26,7 @@ class RacingGameTest {
         racingGame.createCars(cars);
         racingGame.moveCars();
         for(Car car : cars) {
-            assertEquals(car.getCurrentPositon(), 1);
+            assertEquals(car.getCurrentPositon(), new Position(1));
         }
     }
 

@@ -2,20 +2,22 @@ package racingcar.domain;
 
 public class Car {
     private CarName carName;
-    private int currentPosition;
+
+    private Position position;
 
     public Car(CarName carName) {
         this.carName = carName;
+        this.position = new Position();
     }
 
     public void move(MovingStrategy movingStrategy) {
         if (movingStrategy.movable()) {
-            currentPosition++;
+            position.move();
         }
     }
 
-    public int getCurrentPositon() {
-        return this.currentPosition;
+    public Position getCurrentPositon() {
+        return position;
     }
 
     public String getMoveResult() {
@@ -24,15 +26,11 @@ public class Car {
     }
 
     private String getCurrentPositionString() {
-        StringBuilder currentPositionString = new StringBuilder();
-        for (int i = 0; i < currentPosition; i++) {
-            currentPositionString.append("-");
-        }
-        return currentPositionString.toString();
+        return position.getCurrentPositionString();
     }
 
-    public String isWinner(int maxPosition) {
-        if(this.getCurrentPositon() == maxPosition) {
+    public String isWinner(Position maxPosition) {
+        if(this.position.equals(maxPosition)) {
             return this.carName.getCarName() + ", ";
         }
         return "";

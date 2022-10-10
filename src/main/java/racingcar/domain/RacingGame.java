@@ -1,6 +1,5 @@
 package racingcar.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,9 +30,10 @@ public class RacingGame {
     }
 
     public String getWinnerText() {
-        int maxPosition = Integer.MIN_VALUE;
+        Position maxPosition = new Position();
+
         for(Car car : cars) {
-            maxPosition = Integer.max(maxPosition, car.getCurrentPositon());
+            maxPosition = maxPosition.max(maxPosition, car.getCurrentPositon());
         }
 
         StringBuilder sb = new StringBuilder();

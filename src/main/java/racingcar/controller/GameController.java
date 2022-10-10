@@ -29,6 +29,6 @@ public class GameController {
         }
 
         String winnerString = racingGame.getWinnerText();
-        gameView.print("최종 우승자" + winnerString);
+        gameView.print("최종 우승자 : " + winnerString);
     }
 }
