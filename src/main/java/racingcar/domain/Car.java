@@ -6,8 +6,12 @@ public class Car {
     private Position position;
 
     public Car(CarName carName) {
+        this(carName, 0);
+    }
+
+    public Car(CarName carName, int position) {
         this.carName = carName;
-        this.position = new Position();
+        this.position = new Position(position);
     }
 
     public void move(MovingStrategy movingStrategy) {
@@ -29,10 +33,14 @@ public class Car {
         return position.getCurrentPositionString();
     }
 
-    public String isWinner(Position maxPosition) {
+    public Car isWinner(Position maxPosition) {
         if(this.position.equals(maxPosition)) {
-            return this.carName.getCarName() + ", ";
+            return this;
         }
-        return "";
+        return null;
+    }
+
+    public String getName() {
+        return this.carName.getCarName();
     }
 }
