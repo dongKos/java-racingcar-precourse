@@ -22,4 +22,14 @@ class CarTest {
             new CarName("asdasdasd");
         });
     }
+
+    @Test
+    void 랜덤값이_3이하면_멈추고_4이상이면_전진한다() {
+        Car car = new Car(new CarName("dongk"));
+        car.move(new RandomMoveNumber(3));
+        assertEquals(car.getCurrentPositon(), 0);
+
+        car.move(new RandomMoveNumber(4));
+        assertEquals(car.getCurrentPositon(), 1);
+    }
 }
