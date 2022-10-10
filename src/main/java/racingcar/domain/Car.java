@@ -30,4 +30,11 @@ public class Car {
         }
         return currentPositionString.toString();
     }
+
+    public String isWinner(int maxPosition) {
+        if(this.getCurrentPositon() == maxPosition) {
+            return this.carName.getCarName() + ", ";
+        }
+        return "";
+    }
 }

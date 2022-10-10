@@ -28,5 +28,7 @@ public class GameController {
             gameView.print(racingGame.getMoveResult());
         }
 
+        String winnerString = racingGame.getWinnerText();
+        gameView.print("최종 우승자" + winnerString);
     }
 }

@@ -29,4 +29,17 @@ public class RacingGame {
         }
         return moveResult.toString();
     }
+
+    public String getWinnerText() {
+        int maxPosition = Integer.MIN_VALUE;
+        for(Car car : cars) {
+            maxPosition = Integer.max(maxPosition, car.getCurrentPositon());
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for(Car car : cars) {
+            sb.append(car.isWinner(maxPosition));
+        }
+        return sb.substring(0, sb.length()-2);
+    }
 }
